@@ -4,14 +4,12 @@ import { bindActionCreators } from 'redux';
 import React from 'react';
 
 import * as ActionsCreators from '../actions/ActionsCreators';
-import FetchingBoxContainer from './FetchingBoxContainer';
 import JapanTableContainer from './JapanTableContainer';
 import JapanForm from './JapanForm';
 import NotificationsContainer from './NotificationsContainer';
 
 const Japan = ({ state, actions }) => (<div className='japan-ui'>
   <NotificationsContainer state={state} />
-  <FetchingBoxContainer state={state} />
   <JapanForm state={state} actions={actions}/>
   <JapanTableContainer state={state} actions={actions}/>
 </div>);

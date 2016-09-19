@@ -1,5 +1,5 @@
 {
-  "url": "wss://www2.binaryws.com/websockets/v3?app_id=1098&l=EN",
+  "url": "wss://www2.binaryws.com/websockets/v3?app_id=1098&l=JA",
   "checkTimeout": 60,
   "pingTimeout": 2,
   "cacheExpiry": {

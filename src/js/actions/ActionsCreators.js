@@ -253,8 +253,7 @@ export function setPeriod(payload) {
 
           if (timeLeft < 120 && timeLeft > 0) {
             dispatch(Actions.showNotification({
-              message: text(`This contract can not be traded 
-          in the final 2 minutes before settlement`),
+              message: text('This contract can not be traded in the final 2 minutes before settlement'),
               level: 'info',
               uid: 'TIME_LEFT',
             }));
@@ -273,15 +272,18 @@ export function setPeriod(payload) {
 let payoutPromise;
 export function setPayout(payload) {
   return (dispatch, getState) => {
-    let payout = payload && payload.payout;
+    let payout = payload && (+payload.payout);
 
     const needToStore = Boolean(payout);
 
     if (typeof payout === 'undefined') {
       payout = getState().getIn(['storage', 'payout']);
     }
+    else if (!Number.isInteger(payout) || payout < 0 || payout > 100) {
+        return false;
+    }
 
-    if (typeof payout === 'undefined') {
+    if (!payout) {
       payout = 1;
     }
 

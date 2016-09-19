@@ -172,6 +172,7 @@ export function buy(payload) {
     currency: 'JPY',
     symbol: symbol,
     date_expiry: expiry,
+    app_markup_percentage: '0'
   };
 
   const match = barriers.match(/^([\d.]+)_([\d.]+)$/);
