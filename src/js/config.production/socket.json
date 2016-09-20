@@ -1,8 +1,0 @@
-{
-  "url": "wss://ws.binaryws.com/websockets/v3?app_id=1",
-  "checkTimeout": 60,
-  "pingTimeout": 2,
-  "cacheExpiry": {
-    "active_symbols": 120
-  }
-}
