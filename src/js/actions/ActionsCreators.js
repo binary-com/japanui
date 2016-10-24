@@ -328,12 +328,13 @@ export function getPrices() {
     const barriers = getState().getIn(['values', 'barriers']);
     const contractTypes = getState().getIn(['values', 'contractTypes']);
     const req_id = (getState().getIn(['values', 'proposal_req_id']) || 0) + 1;
+    const start = getState().getIn(['values', 'period']).split('_')[0];
 
     return dispatch(Actions.forgetAllStreams('proposal'))
       .then(() => dispatch(deleteProposalsStreams()))
       .then(() => {
         contractTypes.forEach((contractType) => barriers.forEach((barrier) => (
-          dispatch(Actions.getPrice({ contractType, symbol, endDate, payout, barrier, req_id }))
+          dispatch(Actions.getPrice({ contractType, symbol, endDate, payout, barrier, req_id, start }))
           .catch((err = {}) => {
             if (err.code === 'RateLimit') {
               var binary_static_error = document.getElementById('ratelimit-error-message');
