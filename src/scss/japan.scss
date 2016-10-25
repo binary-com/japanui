@@ -183,8 +183,10 @@
         padding: 4px;
         padding-right: 0;
         margin-left: 5px;
-        font-size: 10px;
         line-height: 16px;
+      }
+      .hint, span, label {
+        font-size: 10px;
       }
     }
     .payout-select {

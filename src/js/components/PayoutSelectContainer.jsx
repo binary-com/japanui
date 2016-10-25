@@ -12,7 +12,7 @@ const PayoutSelectContainer = (props) => {
     heading={text('Payout Amount')}>
       <div className='payout-input'>
         <div className='float-left'>
-          {text('¥')} <input {...props2} id='payout'/>
+          <span>{text('¥')}</span> <input {...props2} id='payout'/>
           <label className='payout-mult' htmlFor='payout'>{text(',000')}</label>
         </div>
         <div className='float-left hint'>{text('min: 1,000')}<br />{text('max: 100,000')}</div>

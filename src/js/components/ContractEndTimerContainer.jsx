@@ -39,9 +39,7 @@ const ContractEndTimerContainer = ({ timeLeft }) => {
     resultStr = result.join(' ');
     prevTimeLeft = timeLeft;
 
-    if (timeLeft < 120) {
-      alert = true;
-    }
+    alert = (timeLeft < 120);
   }
 
   return <ContractEndTimer alert={alert}>{timeLeft ? (timeLeft > 0 ? resultStr : '0') : '...'}</ContractEndTimer>;

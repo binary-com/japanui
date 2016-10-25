@@ -107,8 +107,8 @@ export function setSymbol(payload) {
     }
 
     const displayName = SymbolsHelper.getDisplayName(symbols, symbol);
-
-    return dispatch(Actions.setSymbol({ needToStore, symbol }))
+    return dispatch(Actions.hideNotification({uid: 'SYMBOL_ERROR'}))
+      .then(() => dispatch(Actions.setSymbol({ needToStore, symbol })))
       .then(() => dispatch(Actions.setDisplayName({ needToStore: 1, symbol: symbol, display_name: displayName })))
       .then(() => dispatch(getContracts()))
       .then(() => dispatch(getTicks(symbol)))
@@ -116,6 +116,7 @@ export function setSymbol(payload) {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: 'SYMBOL_ERROR',
         })));
   };
 }
@@ -124,7 +125,8 @@ function getContracts() {
   clearTimeout(timers.contractsTimer);
   return (dispatch, getState) => {
     const symbol = getState().getIn(['values', 'symbol']);
-    return dispatch(Actions.getContracts({ symbol }))
+    return dispatch(Actions.hideNotification({uid: 'CONTRACT_ERROR'}))
+      .then(() => dispatch(Actions.getContracts({ symbol })))
       .then(() => {
         timers.contractsTimer = setTimeout(() => dispatch(updateContracts()), 15 * 1000);
       })
@@ -134,6 +136,7 @@ function getContracts() {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: 'CONTRACT_ERROR',
         })));
   };
 }
@@ -152,6 +155,7 @@ function updateContracts() {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: err.code,
         })));
   };
 }
@@ -221,6 +225,7 @@ export function setCategory(payload) {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: err.code,
         })));
   };
 }
@@ -275,6 +280,7 @@ export function setPeriod(payload) {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: err.code,
         })));
   };
 }
@@ -316,6 +322,7 @@ export function setPayout(payload) {
         Actions.showNotification({
           message: text(err.message),
           level: 'error',
+          uid: err.code,
         })));
   }
 }
